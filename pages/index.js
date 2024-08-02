@@ -21,7 +21,11 @@ export default function Home() {
       );
       setResponse(res.data);
     } catch (error) {
-      alert("Invalid JSON or API error");
+      console.error(error);
+      alert(
+        "Invalid JSON or API error: " +
+          (error.response?.data?.error || error.message)
+      );
     }
   };
 
@@ -47,7 +51,7 @@ export default function Home() {
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Enter JSON here"
+            placeholder='Enter JSON here. Example: { "data": ["A","C","z"] }'
           />
           <button type="submit">Submit</button>
         </form>
