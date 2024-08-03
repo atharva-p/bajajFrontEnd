@@ -59,40 +59,18 @@ export default function Home() {
         {response && (
           <div>
             <h2>Response:</h2>
+            <p>Status: {response.is_success ? "Success" : "Failure"}</p>
+            <p>User ID: {response.user_id}</p>
+            <p>Email: {response.email}</p>
+            <p>Roll Number: {response.roll_number}</p>
             <div>
-              <label>Toggle sections:</label>
-              {["characters", "numbers", "highestAlphabet"].map((section) => (
-                <label key={section}>
-                  <input
-                    type="checkbox"
-                    checked={visibleSections.includes(section)}
-                    onChange={() => toggleSection(section)}
-                  />
-                  {section}
-                </label>
-              ))}
+              <h3>Numbers:</h3>
+              <p>{response.numbers.join(", ")}</p>
             </div>
-
-            {visibleSections.includes("characters") && (
-              <div>
-                <h3>Characters:</h3>
-                <p>{response.alphabets.join(", ")}</p>
-              </div>
-            )}
-
-            {visibleSections.includes("numbers") && (
-              <div>
-                <h3>Numbers:</h3>
-                <p>{response.numbers.join(", ")}</p>
-              </div>
-            )}
-
-            {visibleSections.includes("highestAlphabet") && (
-              <div>
-                <h3>Highest Alphabet:</h3>
-                <p>{response.highest_alphabet.join(", ")}</p>
-              </div>
-            )}
+            <div>
+              <h3>Alphabets:</h3>
+              <p>{response.alphabets.join(", ")}</p>
+            </div>
           </div>
         )}
       </main>
